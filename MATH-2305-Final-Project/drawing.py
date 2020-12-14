@@ -1,0 +1,38 @@
+"""These function will either show the weighted graph or draw the subtree
+
+Args: 
+    G (Graph): The graph of the spanning tree
+    T (node): The node that MST starts with
+    
+return: 
+    plot: drawing of weighted graph
+    plot: drawing of the subtree
+    
+"""
+
+import networkx as nx
+import matplotlib.pyplot as plt
+import numpy as np
+
+#This function will draw the graph
+def show_weighted_graph(G):
+    pos = nx.planar_layout(G)
+    nx.draw(G, pos)
+    labels = nx.get_edge_attributes(G, 'weight')
+    nx.draw_networkx_edge_labels(G, pos, edge_labels = labels)
+    
+    plt.show()
+   
+#This function will draw the subtree for MST
+def draw_subtree(G, T):
+    pos = nx.planar_layout(G)
+    nx.draw_networkx(G, pos)
+    labels = nx.get_edge_attributes(G, 'weight')
+    nx.draw_networkx_edge_labels(G, pos, edge_labels = labels,)
+    
+    nx.draw_networkx_edges(G, pos, edgelist = T.edges()
+                           , width = 8, alpha = 0.5, edge_color = 'r')
+    nx.draw_networkx_nodes(G, pos, nodelist = T.nodes()
+                           , node_color = 'r', node_size = 500, alpha = 0.8)
+    
+    plt.show()
